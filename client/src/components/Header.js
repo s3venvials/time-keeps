@@ -13,7 +13,7 @@ export default function Header() {
             title="Menu"
           >
             <Dropdown.Item href="#/action-3">Business Portal</Dropdown.Item>
-            <Dropdown.Item href="#/action-1">Register Business</Dropdown.Item>
+            <Dropdown.Item href="/business/register">Register Business</Dropdown.Item>
             <Dropdown.Item href="/user/register">Register User</Dropdown.Item>
             <Dropdown.Item href="#/action-3">Token Generator</Dropdown.Item>
             <Dropdown.Item href="#/action-3">

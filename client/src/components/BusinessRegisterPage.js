@@ -7,11 +7,8 @@ const styles = {
   marginTop: "2em"
 };
 
-const RegistrationPage = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [dob, setDob] = useState("");
+const BusinessRegisterPage = () => {
+  const [company, setCompany] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -24,10 +21,7 @@ const RegistrationPage = () => {
       isSubmitted(true);
 
       if (
-        !firstName ||
-        !lastName ||
-        !email ||
-        !dob ||
+        !company ||
         !address ||
         !city ||
         !state ||
@@ -36,7 +30,7 @@ const RegistrationPage = () => {
         return;
       }
       return history.push("/", {
-        Message: "User registration was successfull!",
+        Message: "Business registration was successfull!",
       });
     } catch (error) {
       console.log(error);
@@ -45,40 +39,13 @@ const RegistrationPage = () => {
 
   const fields = [
     {
-      controlId: "formGridFirstName",
-      label: "First Name",
+      controlId: "formGridCompanyName",
+      label: "Company Name",
       type: "text",
-      value: firstName,
-      onChange: (e) => setFirstName(e.target.value),
-      placeHolder: "First Name",
-      col: 6,
-    },
-    {
-      controlId: "formGridLastName",
-      label: "Last Name",
-      type: "text",
-      value: lastName,
-      onChange: (e) => setLastName(e.target.value),
-      placeHolder: "Last Name",
-      col: 6,
-    },
-    {
-      controlId: "formGridEmail",
-      label: "Email",
-      type: "email",
-      value: email,
-      onChange: (e) => setEmail(e.target.value),
-      placeHolder: "Email",
-      col: 6,
-    },
-    {
-      controlId: "formGridDob",
-      label: "DOB",
-      type: "date",
-      value: dob,
-      onChange: (e) => setDob(e.target.value),
-      placeHolder: "DOB",
-      col: 6,
+      value: company,
+      onChange: (e) => setCompany(e.target.value),
+      placeHolder: "Company Name",
+      col: 12,
     },
     {
       controlId: "formGridAddress1",
@@ -120,7 +87,7 @@ const RegistrationPage = () => {
 
   return (
     <Container style={styles}>
-      <h3>User Registration</h3>
+      <h3>Business Registration</h3>
 
       <Form style={{ marginTop: "2em" }} onSubmit={handleSubmit}>
         <Form.Row>
@@ -153,4 +120,4 @@ const RegistrationPage = () => {
   );
 };
 
-export default RegistrationPage;
+export default BusinessRegisterPage;
