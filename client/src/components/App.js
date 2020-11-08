@@ -5,6 +5,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 import HomePage from "./HomePage";
 import RegistrationPage from "./RegisterPage";
+import CheckInPage from "./CheckInPage";
+import CheckOutPage from "./CheckOutPage";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
       <Header />
         <Route exact path="/" component={HomePage} />
         <Route exact path="/register" component={RegistrationPage} />
+        <Route exact path="/checkin" component={CheckInPage} />
+        <Route exact path="/checkout" component={CheckOutPage} />
       <Footer />
     </Router>
   )

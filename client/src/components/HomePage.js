@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Button, Row, Col, Alert } from "react-bootstrap";
+import { history } from "../helpers";
 
 const styles = {
   display: "flex",
@@ -48,12 +49,12 @@ const HomePage = (props) => {
       </Row>
       <Row>
         <Col lg={12} style={{ marginBottom: "1em" }}>
-          <Button variant="primary" size="lg" block>
+          <Button onClick={() => history.push("/checkin")} variant="primary" size="lg" block>
             Check In
           </Button>
         </Col>
         <Col lg={12}>
-          <Button variant="warning" size="lg" block style={{ color: "white" }}>
+          <Button onClick={() => history.push("/checkout")} variant="warning" size="lg" block style={{ color: "white" }}>
             Check Out
           </Button>
         </Col>

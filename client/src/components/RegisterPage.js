@@ -56,7 +56,7 @@ const RegistrationPage = () => {
       col: 6
     },
     {
-      controlId: "formGridBday",
+      controlId: "formGridDob",
       label: "DOB",
       type: "date",
       value: dob,
