@@ -3,8 +3,8 @@ import { Container, Button, Form, Col, Alert } from "react-bootstrap";
 import { history } from "../helpers";
 
 const styles = {
-  minHeight: "100vh",
-  marginTop: "2em"
+  marginTop: "2em",
+  paddingBottom: "75px"
 };
 
 const RegistrationPage = () => {
