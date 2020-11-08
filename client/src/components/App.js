@@ -14,7 +14,7 @@ function App() {
     <Router history={history}>
       <Header />
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/register" component={RegistrationPage} />
+        <Route exact path="/user/register" component={RegistrationPage} />
         <Route exact path="/checkin" component={CheckInPage} />
         <Route exact path="/checkout" component={CheckOutPage} />
       <Footer />
