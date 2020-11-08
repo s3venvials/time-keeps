@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { Container, Button, Form, Col, Alert } from "react-bootstrap";
 import { history } from "../helpers";
 
+const styles = {
+  minHeight: "100vh"
+}
+
 const RegistrationPage = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -103,7 +107,7 @@ const RegistrationPage = () => {
   ];
 
   return (
-    <Container>
+    <Container style={styles}>
       <Form style={{ marginTop: "2em" }} onSubmit={handleSubmit}>
         <Form.Row>
           {fields.map((field, index) => {
