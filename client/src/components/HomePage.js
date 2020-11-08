@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Button, Row, Col } from "react-bootstrap";
+import { Container, Button, Row, Col, Alert } from "react-bootstrap";
 
 const styles = {
   display: "flex",
@@ -10,19 +10,33 @@ const styles = {
   minHeight: "70vh",
 };
 
-const HomePage = () => {
+const HomePage = (props) => {
   const [date, setDate] = useState(new Date());
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
-    let timer = setInterval(() => setDate(new Date()), 1000);
+    const timer = setInterval(() => setDate(new Date()), 1000);
 
     return function cleanup() {
       clearInterval(timer);
     };
   });
 
+  useEffect(() => {
+    if (props.location.state) {
+      setMessage(props.location.state.Message);
+    }
+    const timeOut = setTimeout(() => { setMessage("") }, 5000);
+
+    return function cleanup() {
+      clearTimeout(timeOut);
+    }
+  }, [props.location.state]);
+
   return (
     <Container style={styles}>
+      {message && <Alert variant="success">{message}</Alert>}
+
       <Row
         style={{
           border: "1px solid #CCC",
