@@ -1,122 +1,32 @@
-import React, { useState } from "react";
-import { Container, Button, Form, Col, Alert } from "react-bootstrap";
-import { history } from "../helpers";
+import React, { useState, useEffect } from "react";
+import { Container } from "react-bootstrap";
+import BusinessRegisterForm from "./BusinessRegisterComponents/BusinessRegisterForm";
+import BusinessRegisterAuth from "./BusinessRegisterComponents/BusinessRegisterAuth";
+import BusinessRegisterReview from "./BusinessRegisterComponents/BusinessRegisterReview";
 
 const styles = {
   marginTop: "2em",
-  paddingBottom: "75px"
+  paddingBottom: "75px",
 };
 
-const BusinessRegisterPage = () => {
-  const [company, setCompany] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zipcode, setZipcode] = useState("");
-  const [submitted, isSubmitted] = useState(false);
+const BusinessRegisterPage = (props) => {
+  const [index, setIndex] = useState(0);
+  const [formData, setFormData] = useState([]);
 
-  const handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      isSubmitted(true);
-
-      if (
-        !company ||
-        !address ||
-        !city ||
-        !state ||
-        !zipcode
-      ) {
-        return;
-      }
-      return history.push("/", {
-        Message: "Business registration was successfull!",
-      });
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    if (props.location.state) {
+      setIndex(props.location.state.index);
     }
-  };
+  }, [props.location.state]);
 
-  const fields = [
-    {
-      controlId: "formGridCompanyName",
-      label: "Company Name",
-      type: "text",
-      value: company,
-      onChange: (e) => setCompany(e.target.value),
-      placeHolder: "Company Name",
-      col: 12,
-    },
-    {
-      controlId: "formGridAddress1",
-      label: "Address",
-      type: "text",
-      value: address,
-      onChange: (e) => setAddress(e.target.value),
-      placeHolder: "Address",
-      col: 12,
-    },
-    {
-      controlId: "formGridCity",
-      label: "City",
-      type: "text",
-      value: city,
-      onChange: (e) => setCity(e.target.value),
-      placeHolder: "City",
-      col: 4,
-    },
-    {
-      controlId: "formGridState",
-      label: "State",
-      type: "text",
-      value: state,
-      onChange: (e) => setState(e.target.value),
-      placeHolder: "State",
-      col: 4,
-    },
-    {
-      controlId: "formGridZip",
-      label: "Zip",
-      type: "text",
-      value: zipcode,
-      onChange: (e) => setZipcode(e.target.value),
-      placeHolder: "Zip",
-      col: 4,
-    },
-  ];
+  const receiveFormData = (data) => setFormData(data);
 
   return (
-    <Container style={styles}>
-      <h3>Business Registration</h3>
-
-      <Form style={{ marginTop: "2em" }} onSubmit={handleSubmit}>
-        <Form.Row>
-          {fields.map((field, index) => {
-            return (
-              <Col lg={field.col} key={index}>
-                <Form.Group controlId={field.controlId}>
-                  <Form.Label>{field.label}</Form.Label>
-                  <Form.Control
-                    type={field.type}
-                    value={field.value}
-                    placeholder={field.placeHolder}
-                    onChange={field.onChange}
-                  />
-                </Form.Group>
-
-                {submitted && !field.value && (
-                  <Alert variant="danger">{`Please provide a ${field.label}`}</Alert>
-                )}
-              </Col>
-            );
-          })}
-        </Form.Row>
-
-        <Button type="submit" variant="primary">
-          Submit
-        </Button>
-      </Form>
-    </Container>
+  <Container style={styles}>
+    {index === 0 && <BusinessRegisterForm formData={formData} sendFormData={receiveFormData} />}
+    {index === 1 && <BusinessRegisterAuth formData={formData} sendFormData={receiveFormData} />}
+    {index === 2 && <BusinessRegisterReview formData={formData} sendFormData={receiveFormData} />}
+  </Container>
   );
 };
 
